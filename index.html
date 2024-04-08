@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorting Data</title>
+  </head>
+  <body style="padding: 0; margin: 0">
+    <div
+      class="container"
+      style="
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        gap: 2rem;
+        height: 100vh;
+        background-color: rgb(28, 27, 30);
+      "
+    >
+      <div>
+        <label for="" style="color: white">Country: </label>
+        <select
+          name=""
+          id="country"
+          onchange="populateStates()"
+          style="padding: 0.5rem 3.5rem; border-radius: 0.2rem"
+        ></select>
+      </div>
+      <div>
+        <label for="" style="color: white">States: </label>
+        <select
+          name=""
+          id="states"
+          onchange="populateCities()"
+          style="padding: 0.5rem 3.5rem; border-radius: 0.2rem"
+        ></select>
+      </div>
+      <div>
+        <label for="" style="color: white">City: </label>
+        <select
+          name=""
+          id="cities"
+          style="padding: 0.5rem 3.5rem; border-radius: 0.2rem"
+        ></select>
+      </div>
+    </div>
+
+    <!-- JS File -->
+
+    <script>
+      let countries = ["Pakistan", "Afghanistan", "America"];
+      let states = {
+        Pakistan: ["Khyber Pakhtunkhwa", "Balochistan", "Punjab", "Sindh"],
+        Afghanistan: ["Kabul", "Herat", "Kandahar", "Balkh"],
+        America: ["New York", "California", "Texas", "Florida"],
+      };
+
+      let cities = {
+        "Khyber Pakhtunkhwa": ["Peshawar", "Abbottabad", "Swat"],
+        Balochistan: ["Quetta", "Gwadar", "Chaman"],
+        Punjab: ["Lahore", "Faisalabad", "Rawalpindi"],
+        Sindh: ["Karachi", "Hyderabad", "Sukkur"],
+        Kabul: ["Kabul City", "Herat City", "Kandahar City", "Mazar-i-Sharif"],
+        Herat: ["Herat City", "Ghoryan", "Karukh"],
+        Kandahar: ["Kandahar City", "Daman", "Spin Boldak"],
+        Balkh: ["Mazar-i-Sharif", "Balkh", "Dihdadi"],
+        "New York": ["New York City", "Buffalo", "Rochester"],
+        California: ["Los Angeles", "San Francisco", "San Diego"],
+        Texas: ["Houston", "Dallas", "Austin"],
+        Florida: ["Miami", "Orlando", "Tampa"],
+      };
+
+      const dropdownCountries = document.getElementById("country");
+      const dropdownStates = document.getElementById("states");
+      const dropdownCities = document.getElementById("cities");
+
+      countries.forEach(function (country) {
+        let createOptions = document.createElement("option");
+        createOptions.textContent = country;
+        dropdownCountries.add(createOptions);
+      });
+
+      function populateStates() {
+        dropdownStates.innerHTML = "";
+
+        const selectedCountry = dropdownCountries.value;
+
+        const statesForSelectedCountry = states[selectedCountry];
+
+        statesForSelectedCountry.forEach((state) => {
+          let createOptions = document.createElement("option");
+          createOptions.textContent = state;
+          dropdownStates.add(createOptions);
+        });
+
+        dropdownCities.innerHTML = "";
+      }
+
+      function populateCities() {
+        dropdownCities.innerHTML = "";
+
+        const selectedState = dropdownStates.value;
+        const citiesForSelectedState = cities[selectedState];
+
+        citiesForSelectedState.forEach((city) => {
+          let createOptions = document.createElement("option");
+          createOptions.textContent = city;
+          dropdownCities.add(createOptions);
+        });
+      }
+    </script>
+  </body>
+</html>
